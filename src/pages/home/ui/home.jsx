@@ -1,4 +1,23 @@
+import { Card } from 'primereact/card';
+import { Image } from 'primereact/image';
+import { Tag } from 'primereact/tag';
+import { useEffect } from 'react';
+
 const HomePage = () => {
+    useEffect(() => {
+        fetch('https://pokeapi.co/api/v2/pokemon/ditto')
+            .then((response) => response.json())
+            .then((data) => console.log(data));
+    }, []);
+
+    const getImage = (src, alt) => {
+        return <Image src={src} alt={alt} />;
+    };
+
+    const getType = (bgColor, label) => {
+        return <Tag severity={bgColor} value={label} />;
+    };
+
     return (
         <div className='flex flex-col min-h-screen'>
             <header className='py-6'>
@@ -11,9 +30,12 @@ const HomePage = () => {
             </header>
             <main className='flex-grow'>
                 <div className='container mx-auto px-6'>
-                    Lorem ipsum dolor, sit amet consectetur adipisicing elit. Debitis amet recusandae eaque perferendis
-                    tenetur? Ipsum porro eos tempore laboriosam fugiat nisi reprehenderit quibusdam officia,
-                    exercitationem debitis! Commodi eos sit aspernatur?
+                    <Card
+                        header={getImage('https://placehold.co/100x100/png', 'ditto')}
+                        title='Ditto'
+                        subTitle='#001'
+                        footer={getType('info', 'poison')}
+                    />
                 </div>
             </main>
             <footer className='py-10'>
