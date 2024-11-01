@@ -3,7 +3,7 @@ import { createRoot } from 'react-dom/client';
 import { RouterProvider } from 'react-router-dom'
 import { PrimeReactProvider } from 'primereact/api';
 import { Provider } from 'react-redux';
-import { store } from '@/shared/store';
+import { store } from './store';
 import appRouter from './router';
 import './index.css';
 

@@ -1,30 +1,17 @@
-import { Card } from 'primereact/card';
-import { Image } from 'primereact/image';
-import { Tag } from 'primereact/tag';
-import { useEffect } from 'react';
+import { PokemonCard, useGetPokemonListQuery } from '@/entities/pokemon';
 
 const HomePage = () => {
-    useEffect(() => {
-        fetch('https://pokeapi.co/api/v2/pokemon/ditto')
-            .then((response) => response.json())
-            .then((data) => console.log(data));
-    }, []);
+    const { data: pokemons, isLoading, error } = useGetPokemonListQuery();
 
-    const getImage = (src, alt) => {
-        return <Image src={src} alt={alt} />;
-    };
-
-    const getType = (bgColor, label) => {
-        return <Tag severity={bgColor} value={label} />;
-    };
+    if (isLoading) return <div>Loading...</div>;
+    if (error) return <div>Error loading pokemons</div>;
 
     return (
-        <Card
-            header={getImage('https://placehold.co/100x100/png', 'ditto')}
-            title='Ditto'
-            subTitle='#001'
-            footer={getType('info', 'poison')}
-        />
+        <div className='grid grid-cols-10 gap-5'>
+            {pokemons.results.map((pokemon) => (
+                <PokemonCard name={pokemon.name} key={pokemon.name} />
+            ))}
+        </div>
     );
 };
 
