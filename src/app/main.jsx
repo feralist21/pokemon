@@ -11,7 +11,7 @@ createRoot(document.getElementById('root')).render(
     <StrictMode>
         <Provider store={store}>
             <PrimeReactProvider>
-                <RouterProvider router={appRouter()}/>
+                <RouterProvider router={appRouter}/>
             </PrimeReactProvider>
         </Provider>
     </StrictMode>,
