@@ -9,20 +9,24 @@ export const PokemonCard = ({ name }) => {
     if (isLoading) return <div>Loading...</div>;
     if (error) return <div>Error loading pokemon details</div>;
 
-    const getImage = (src, alt) => {
-        return <Image src={src} alt={alt} />;
+    const ImageCustom = ({ src, alt }) => {
+        return <Image className='w-full h-32 object-contain' src={src} alt={alt} />;
     };
 
-    const getType = (bgColor, label) => {
-        return <Tag severity={bgColor} value={label} />;
+    // const Type = ({ type, label }) => {
+    //     return <Tag value={label} rounded unstyled className='' />;
+    // };
+
+    const Title = ({ name }) => {
+        return <h2 className='text-xl font-medium text-black'>{name}</h2>;
     };
 
     return (
         <Card
-            header={getImage(pokemon.sprites.front_default, pokemon.name)}
-            title={pokemon.name}
+            header={<ImageCustom src={pokemon.sprites.other['official-artwork'].front_default} alt={pokemon.name} />}
+            title={<Title name={pokemon.name} />}
             subTitle={`#${pokemon.id}`}
-            footer={getType('info', pokemon.name)}
+            // footer={<Type type={'info'} label={pokemon.name} />}
         />
     );
 };

@@ -7,7 +7,7 @@ const HomePage = () => {
     if (error) return <div>Error loading pokemons</div>;
 
     return (
-        <div className='grid grid-cols-10 gap-5'>
+        <div className='grid grid-cols-8 gap-5'>
             {pokemons.results.map((pokemon) => (
                 <PokemonCard name={pokemon.name} key={pokemon.name} />
             ))}
