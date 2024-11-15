@@ -1,12 +1,12 @@
 import { createBrowserRouter } from 'react-router-dom';
 import { Favorite } from '@/pages/favorite';
 import { HomePage } from '@/pages/home';
-import Layout from './baseLayout';
+import { AppLayout } from './AppLayout';
 
 const appRouter = createBrowserRouter([
     {
         path: '/',
-        element: <Layout />,
+        element: <AppLayout />,
         children: [
             { index: true, element: <HomePage /> },
             {
