@@ -1,54 +1,55 @@
+import clsx from 'clsx';
 import { useMemo } from 'react';
 
 const Type = ({ typeName }) => {
     const classesType = useMemo(() => {
         switch (typeName) {
             case 'normal':
-                return 'red';
+                return 'bg-gray-400 text-black';
             case 'fighting':
-                return 'red';
+                return 'bg-amber-700 text-white';
             case 'flying':
-                return 'red';
+                return 'bg-sky-500 text-white';
             case 'poison':
-                return 'red';
+                return 'bg-purple-400 text-white';
             case 'ground':
-                return 'red';
+                return 'bg-yellow-800/70 text-white';
             case 'rock':
-                return 'red';
+                return 'bg-yellow-800 text-white';
             case 'bug':
-                return 'red';
+                return 'bg-lime-700 text-white';
             case 'ghost':
-                return 'red';
+                return 'bg-purple-800 text-white';
             case 'steel':
-                return 'red';
+                return 'bg-zinc-500 text-white';
             case 'fire':
-                return 'red';
+                return 'bg-orange-500 text-white';
             case 'water':
-                return 'red';
+                return 'bg-blue-600 text-white';
             case 'grass':
-                return 'red';
+                return 'bg-green-500 text-black';
             case 'electric':
-                return 'red';
+                return 'bg-amber-300 text-white';
             case 'psychic':
-                return 'red';
+                return 'bg-pink-500 text-white';
             case 'ice':
-                return 'red';
+                return 'bg-cyan-300 text-black';
             case 'dragon':
-                return 'red';
+                return 'bg-red-700 text-white';
             case 'dark':
-                return 'red';
+                return 'bg-stone-900/80 text-white';
             case 'fairy':
-                return 'red';
+                return 'bg-pink-300 text-white';
             case 'stellar':
-                return 'red';
+                return 'bg-Emerald-900 text-white';
             case 'unknown':
-                return 'red';
+                return 'bg-stone-950 text-white';
             default:
                 return 'primary';
         }
     }, [typeName]);
 
-    return <div className='rounded-md bg-slate-500 text-white py-1 px-2 text-xs font-normal w-max'>{typeName}</div>;
+    return <div className={clsx(classesType, 'rounded-md py-1 px-2 text-xs leading-3 font-normal w-max')}>{typeName}</div>;
 };
 
 export { Type };
