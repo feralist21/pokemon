@@ -1,2 +1,2 @@
-export { useGetPokemonByNameQuery, useGetPokemonListQuery } from './api';
+export { useGetPokemonByNameQuery, useLazyGetPokemonListQuery } from './api';
 export { PokemonCard } from './ui/PokemonCard';

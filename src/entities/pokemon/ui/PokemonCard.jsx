@@ -28,15 +28,11 @@ export const PokemonCard = ({ name }) => {
     };
 
     return (
-        <>
-            <Card
-                header={
-                    <ImageCustom src={pokemon.sprites.other['official-artwork'].front_default} alt={pokemon.name} />
-                }
-                title={<Title name={pokemon.name} />}
-                subTitle={`#${pokemon.id}`}
-                footer={<Types types={pokemon.types} />}
-            />
-        </>
+        <Card
+            header={<ImageCustom src={pokemon.sprites.other['official-artwork'].front_default} alt={pokemon.name} />}
+            title={<Title name={pokemon.name} />}
+            subTitle={`#${pokemon.id}`}
+            footer={<Types types={pokemon.types} />}
+        />
     );
 };

@@ -8,9 +8,12 @@ const pokemonApi = api.injectEndpoints({
             }),
         }),
         getPokemonList: builder.query({
-            query: () => 'pokemon',
+            query: (params) => ({
+                url: 'pokemon',
+                params,
+            }),
         }),
     }),
 });
 
-export const { useGetPokemonByNameQuery, useGetPokemonListQuery } = pokemonApi;
+export const { useGetPokemonByNameQuery, useLazyGetPokemonListQuery } = pokemonApi;
