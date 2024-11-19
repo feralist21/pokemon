@@ -1,16 +1,16 @@
 import { Card } from 'primereact/card';
-import { Image } from 'primereact/image';
 import { useGetPokemonByNameQuery } from '../api';
 import { Type } from '@/shared/ui/Type/Type';
+import { PokemonSkeleton } from './Skeleton';
 
 export const PokemonCard = ({ name }) => {
     const { data: pokemon, error, isLoading } = useGetPokemonByNameQuery(name);
 
-    if (isLoading) return <div>Loading...</div>;
+    if (isLoading) return <PokemonSkeleton />;
     if (error) return <div>Error loading pokemon details</div>;
 
     const ImageCustom = ({ src, alt }) => {
-        return <Image className='w-full h-32 object-contain' src={src} alt={alt} />;
+        return <img className='w-full h-40 object-contain block' src={src} alt={alt} />;
     };
 
     const Title = ({ name }) => {
@@ -28,11 +28,15 @@ export const PokemonCard = ({ name }) => {
     };
 
     return (
-        <Card
-            header={<ImageCustom src={pokemon.sprites.other['official-artwork'].front_default} alt={pokemon.name} />}
-            title={<Title name={pokemon.name} />}
-            subTitle={`#${pokemon.id}`}
-            footer={<Types types={pokemon.types} />}
-        />
+        <>
+            <Card
+                header={
+                    <ImageCustom src={pokemon.sprites.other['official-artwork'].front_default} alt={pokemon.name} />
+                }
+                title={<Title name={pokemon.name} />}
+                subTitle={`#${pokemon.id}`}
+                footer={<Types types={pokemon.types} />}
+            />
+        </>
     );
 };
