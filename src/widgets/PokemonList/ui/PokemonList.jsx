@@ -1,5 +1,5 @@
 import { useState, useEffect, useCallback } from 'react';
-import { PokemonCard, useLazyGetPokemonListQuery } from '@/entities/pokemon';
+import { PokemonCard, useLazyGetPokemonListQuery } from '@/entities/pokemonCard';
 import { Paginator } from 'primereact/paginator';
 const INITIAL_PER_PAGE = 12;
 const PER_PAGE_OPTIONS = [12, 16, 30];
