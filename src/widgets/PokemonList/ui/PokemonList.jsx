@@ -1,6 +1,8 @@
 import { useState, useEffect, useCallback } from 'react';
 import { PokemonCard, useLazyGetPokemonListQuery } from '@/entities/pokemonCard';
 import { Paginator } from 'primereact/paginator';
+import { ProgressSpinner } from 'primereact/progressspinner';
+import { Message } from 'primereact/message';
 const INITIAL_PER_PAGE = 12;
 const PER_PAGE_OPTIONS = [12, 16, 30];
 
@@ -29,10 +31,20 @@ const PokemonList = () => {
         setLimit(event.rows);
     };
 
-    if (isLoading) return <div>Loading...</div>;
-    if (error) return <div>Error loading pokemons</div>;
+    if (isLoading)
+        return (
+            <div className='flex items-center justify-center h-full'>
+                <ProgressSpinner />
+            </div>
+        );
+    if (error)
+        return (
+            <div>
+                <Message severity='error' text='Ошибка загрузки!' />
+            </div>
+        );
 
-    return(
+    return (
         <div className='flex flex-col gap-y-5'>
             <div className='grid grid-cols-6 gap-5'>
                 {pokemons.map((pokemon) => (
@@ -47,7 +59,7 @@ const PokemonList = () => {
                 onPageChange={onPageChange}
             />
         </div>
-    )
+    );
 };
 
 export { PokemonList };
