@@ -15,20 +15,32 @@ const PokemonList = () => {
 
     const fetchPokemons = useCallback(
         async (offset, limit) => {
-            const response = await getPokemonList({ limit, offset });
-            setPokemons(response.data.results);
-            setTotalCount(response.data.count);
+            try {
+                const response = await getPokemonList({ limit, offset });
+                if (response.data) {
+                    setPokemons(response.data.results);
+                    setTotalCount(response.data.count);
+                } else {
+                    throw new Error('Данные не получены');
+                }
+            } catch (err) {
+                console.error('Ошибка при загрузке покемонов:', err);
+            }
         },
         [getPokemonList],
     );
 
     useEffect(() => {
         fetchPokemons(offset, limit);
-    }, [fetchPokemons, offset, limit]);
+    }, [offset, limit]);
 
     const onPageChange = (event) => {
-        setOffset(event.first);
-        setLimit(event.rows);
+        const newOffset = event.first;
+        const newLimit = event.rows;
+        if (newOffset !== offset || newLimit !== limit) {
+            setOffset(newOffset);
+            setLimit(newLimit);
+        }
     };
 
     if (isLoading)
